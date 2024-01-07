@@ -10,29 +10,24 @@ const PATH="/EntornoServidor/NuevoProyectoPracticandoTodo/public";
 use controllers\FrontController;
 use controllers\usuarioController;
 use controllers\productoController;
-
+// Ruta por defecto
 get(PATH, function (){
     $productoController=new productoController();
     $productoController->showIndex();
 });
 
-get(PATH.'/CreateAccount', function (){
-    $usuarioController=new usuarioController();
-    $usuarioController->registro();
-});
 post(PATH.'/CreateAccount', function (){
     $usuarioController=new usuarioController();
     $usuarioController->registro();
 });
-get(PATH.'/otracosa', function (){
+get(PATH.'/Login', function (){
     $controller=new usuarioController();
 
     $controller->login();
 });
-
+//Ruta para cualquier ruta que no exista
 any('/404', function (){
-    $controller=new usuarioController();
-
-    $controller->login();
+    $productoController=new productoController();
+    $productoController->showIndex();
 });
 ?>
